@@ -56,7 +56,6 @@ function App() {
       );
       const aData: DNSResponse = await aRes.json();
 
-      // Organize data safely (Answer might be undefined if no records found)
       const combinedData: CombinedDNSData = {
         cname: cnameData.Answer || [],
         ns: nsData.Answer || [],
@@ -74,7 +73,7 @@ function App() {
         setResult({
           id: "unknown",
           name: "Unknown / Self-Hosted",
-          icon: "❓",
+          icon: "/icons/unknown.svg", // Ensure you have a generic SVG for this
           color: "bg-slate-700",
           patterns: [],
           desc: "Could not match specific signatures. It might be a VPS (DigitalOcean, Linode) or a private server.",
@@ -91,11 +90,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans">
       <div className="max-w-xl w-full space-y-8">
         {/* Header */}
         <div className="text-center space-y-2">
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-600">
             Host Detective
           </h1>
           <p className="text-slate-400">
@@ -132,17 +131,24 @@ function App() {
             <div
               className={`relative overflow-hidden rounded-2xl p-8 shadow-2xl border border-white/10 ${result.color}`}
             >
-              {/* Background Pattern */}
-              <div className="absolute -right-10 -top-10 text-9xl opacity-20 select-none pointer-events-none">
-                {result.icon}
-              </div>
+              {/* Background Pattern SVG */}
+              <img
+                src={result.icon}
+                alt=""
+                className="absolute -right-10 -top-10 w-64 h-64 opacity-10 select-none pointer-events-none object-contain"
+              />
 
               <div className="relative z-10">
-                <h2 className="text-sm uppercase tracking-widest font-bold opacity-80 mb-2">
+                <h2 className="text-sm uppercase tracking-widest font-bold opacity-80 mb-4">
                   Hosted on
                 </h2>
-                <div className="flex items-center gap-4">
-                  <span className="text-5xl">{result.icon}</span>
+                <div className="flex items-center gap-6">
+                  {/* Main Icon SVG */}
+                  <img
+                    src={result.icon}
+                    alt={`${result.name} logo`}
+                    className="w-16 h-16 object-contain drop-shadow-md"
+                  />
                   <h3 className="text-3xl font-bold">{result.name}</h3>
                 </div>
                 {result.desc && (
@@ -153,7 +159,7 @@ function App() {
           </div>
         )}
 
-        {/* Supported Providers List */}
+        {/* Supported Providers List (Optional: can remove if you don't have SVGs for all yet) */}
         {!result && !loading && (
           <div className="pt-10">
             <p className="text-center text-slate-500 text-xs uppercase tracking-widest mb-4">
@@ -163,8 +169,10 @@ function App() {
               {HOSTING_SIGNATURES.map((p) => (
                 <span
                   key={p.id}
-                  className="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-400 border border-slate-700"
+                  className="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-400 border border-slate-700 flex items-center gap-2"
                 >
+                  {/* Optional: Small icon in list */}
+                  {/* <img src={p.icon} alt="" className="w-3 h-3 opacity-50"/> */}
                   {p.name}
                 </span>
               ))}

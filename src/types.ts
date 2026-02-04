@@ -3,7 +3,7 @@ export interface HostingProvider {
   id: string;
   name: string;
   color: string;
-  icon: string;
+  icon: string; // URL path to the SVG in the public folder (e.g., "/icons/vercel.svg")
   patterns: string[];
   desc?: string;
 }
@@ -28,7 +28,6 @@ export interface DNSResponse {
   Comment?: string;
 }
 
-// Internal structure to hold all fetched records for debugging/checking
 export interface CombinedDNSData {
   cname: DNSAnswer[];
   ns: DNSAnswer[];

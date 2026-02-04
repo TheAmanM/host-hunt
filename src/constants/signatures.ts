@@ -1,53 +1,78 @@
 import type { HostingProvider, CombinedDNSData } from "../types";
 
+import vercelIcon from "../../public/icon/vercel.svg";
+import netlifyIcon from "../../public/icon/netlify.svg";
+import cloudflareIcon from "../../public/icon/cloudflare.svg";
+import githubIcon from "../../public/icon/github.svg";
+import herokuIcon from "../../public/icon/heroku.svg";
+import cloudfrontIcon from "../../public/icon/cloudfront.svg";
+import googleCloudIcon from "../../public/icon/google-cloud.svg";
+import shopifyIcon from "../../public/icon/shopify.svg";
+import wordpressIcon from "../../public/icon/wordpress.svg";
+import squarespaceIcon from "../../public/icon/squarespace.svg";
+import wixIcon from "../../public/icon/wix.svg";
+
 export const HOSTING_SIGNATURES: HostingProvider[] = [
   {
     id: "vercel",
     name: "Vercel",
     color: "bg-black",
-    icon: "▲",
+    icon: vercelIcon,
     patterns: ["vercel.app", "vercel-dns.com", "76.76.21.21"],
   },
   {
     id: "netlify",
     name: "Netlify",
     color: "bg-teal-600",
-    icon: "💠",
+    icon: netlifyIcon,
     patterns: ["netlify.app", "netlify.com", "netlify.global"],
   },
   {
     id: "cloudflare",
-    name: "Cloudflare Pages / CDN",
+    name: "Cloudflare",
     color: "bg-orange-500",
-    icon: "☁️",
-    patterns: ["cloudflare.com", "cloudflare.net", "pages.dev"],
+    icon: cloudflareIcon,
+    patterns: [
+      "cloudflare.com",
+      "cloudflare.net",
+      "pages.dev",
+      "gold.foundationdns.net",
+      "gold.foundationdns.com",
+      "gold.foundationdns.org",
+      "23.227.38.33",
+    ],
   },
   {
     id: "github",
     name: "GitHub Pages",
     color: "bg-gray-700",
-    icon: "🐙",
+    icon: githubIcon,
     patterns: ["github.io", "githubusercontent.com", "185.199.108.153"],
   },
   {
     id: "heroku",
     name: "Heroku",
     color: "bg-purple-600",
-    icon: "🏩",
-    patterns: ["herokuapp.com", "herokudns.com"],
+    icon: herokuIcon,
+    patterns: [
+      "herokuapp.com",
+      "herokudns.com",
+      "heroku.go-vip.net",
+      "192.0.66.110",
+    ],
   },
   {
     id: "aws",
-    name: "AWS (S3/CloudFront)",
+    name: "AWS (CloudFront / S3)",
     color: "bg-yellow-600",
-    icon: "📦",
+    icon: cloudfrontIcon,
     patterns: ["amazonaws.com", "cloudfront.net", "awsdns"],
   },
   {
     id: "google",
     name: "Google Cloud / Firebase",
     color: "bg-blue-600",
-    icon: "🔥",
+    icon: googleCloudIcon,
     patterns: [
       "firebaseapp.com",
       "googlehosted.com",
@@ -59,28 +84,28 @@ export const HOSTING_SIGNATURES: HostingProvider[] = [
     id: "shopify",
     name: "Shopify",
     color: "bg-green-600",
-    icon: "🛍️",
+    icon: shopifyIcon,
     patterns: ["myshopify.com", "shops.myshopify.com"],
   },
   {
     id: "wordpress",
     name: "WordPress.com",
-    color: "bg-blue-800",
-    icon: "📝",
+    color: "bg-[#32373C]",
+    icon: wordpressIcon,
     patterns: ["wordpress.com", "wp.com"],
   },
   {
     id: "squarespace",
     name: "Squarespace",
     color: "bg-stone-800",
-    icon: "⬛",
+    icon: squarespaceIcon,
     patterns: ["squarespace.com", "squarespacedns.com"],
   },
   {
     id: "wix",
     name: "Wix",
-    color: "bg-yellow-400 text-black",
-    icon: "⭐",
+    color: "bg-[#f1f5f9] text-black",
+    icon: wixIcon,
     patterns: ["wixdns.net", "wix.com"],
   },
 ];
@@ -88,7 +113,6 @@ export const HOSTING_SIGNATURES: HostingProvider[] = [
 export const detectProvider = (
   dnsRecords: CombinedDNSData,
 ): HostingProvider | null => {
-  // Convert the complex object to a single string for easy substring matching
   const flattenedData = JSON.stringify(dnsRecords).toLowerCase();
 
   for (const provider of HOSTING_SIGNATURES) {
