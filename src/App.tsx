@@ -86,7 +86,7 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center p-6 font-sans text-white overflow-hidden bg-[#0a0a0c]">
+    <div className="relative min-h-svh flex flex-col items-center justify-center p-6 font-sans text-white overflow-hidden bg-[#0a0a0c]">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1aff_2px,transparent_2px),linear-gradient(to_bottom,#1a1a1aff_2px,transparent_2px)] bg-size-[3rem_3rem] mask-[radial-gradient(ellipse_80%_60%_at_50%_20%,#000_50%,transparent_100%)]" />
