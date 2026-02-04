@@ -3,7 +3,7 @@ export interface HostingProvider {
   id: string;
   name: string;
   color: string;
-  icon: string; // URL path to the SVG in the public folder (e.g., "/icons/vercel.svg")
+  icon: string | React.ReactElement; // URL path to the SVG in the public folder (e.g., "/icons/vercel.svg")
   patterns: string[];
   desc?: string;
 }

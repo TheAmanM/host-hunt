@@ -7,12 +7,11 @@ import {
   Globe2,
   Fingerprint,
   Clock,
+  CircleQuestionMark,
 } from "lucide-react";
 import { HOSTING_SIGNATURES, detectProvider } from "./constants/signatures";
 import type { HostingProvider, DNSResponse, CombinedDNSData } from "./types";
 import posthog from "posthog-js";
-
-const UNKNOWN_ICON = "/icon/unknown.svg";
 
 function App() {
   const [url, setUrl] = useState<string>("");
@@ -91,7 +90,7 @@ function App() {
         setResult({
           id: "unknown",
           name: "Unknown / Self-Hosted",
-          icon: UNKNOWN_ICON,
+          icon: <CircleQuestionMark className="h-10 w-10" />,
           color: "bg-slate-800",
           patterns: [],
           desc: "No matching signature found. This could be a private server or a VPS.",
@@ -207,11 +206,17 @@ function App() {
                         <div
                           className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 ${result.color}`}
                         />
-                        <img
-                          src={result.icon}
-                          alt={result.name}
-                          className="w-12 h-12 object-contain relative z-10 drop-shadow-sm"
-                        />
+                        {typeof result.icon === "string" ? (
+                          <img
+                            src={result.icon}
+                            alt={result.name}
+                            className="w-12 h-12 object-contain relative z-10 drop-shadow-sm"
+                          />
+                        ) : (
+                          <div className="relative z-10 text-white w-12 h-12 flex items-center justify-center">
+                            {result.icon}
+                          </div>
+                        )}
                       </div>
 
                       {/* Verification Badge */}
@@ -325,7 +330,7 @@ function App() {
                   title={p.name}
                 >
                   <img
-                    src={p.icon}
+                    src={String(p.icon)}
                     alt={p.name}
                     className="w-5 h-5 object-contain"
                     style={{
