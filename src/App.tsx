@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { HOSTING_SIGNATURES, detectProvider } from "./constants/signatures";
 import type { HostingProvider, DNSResponse, CombinedDNSData } from "./types";
+import posthog from "posthog-js";
 
 const UNKNOWN_ICON = "/icon/unknown.svg";
 
@@ -33,6 +34,14 @@ function App() {
     }
   };
 
+  const captureURL = (url: string) => {
+    posthog.capture("check_hosting", { url });
+  };
+
+  const captureUnknownURL = (url: string) => {
+    posthog.capture("unknown_hosting", { url });
+  };
+
   const checkHosting = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!url) return;
@@ -48,6 +57,8 @@ function App() {
       setLoading(false);
       return;
     }
+
+    captureURL(domain);
 
     try {
       // Parallelize requests for speed
@@ -76,6 +87,7 @@ function App() {
       if (detected) {
         setResult(detected);
       } else {
+        captureUnknownURL(domain);
         setResult({
           id: "unknown",
           name: "Unknown / Self-Hosted",
