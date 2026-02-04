@@ -1,16 +1,16 @@
 import type { HostingProvider, CombinedDNSData } from "../types";
 
-import vercelIcon from "../../public/icon/vercel.svg";
-import netlifyIcon from "../../public/icon/netlify.svg";
-import cloudflareIcon from "../../public/icon/cloudflare.svg";
-import githubIcon from "../../public/icon/github.svg";
-import herokuIcon from "../../public/icon/heroku.svg";
-import cloudfrontIcon from "../../public/icon/cloudfront.svg";
-import googleCloudIcon from "../../public/icon/google-cloud.svg";
-import shopifyIcon from "../../public/icon/shopify.svg";
-import wordpressIcon from "../../public/icon/wordpress.svg";
-import squarespaceIcon from "../../public/icon/squarespace.svg";
-import wixIcon from "../../public/icon/wix.svg";
+import vercelIcon from "/icon/vercel.svg";
+import netlifyIcon from "/icon/netlify.svg";
+import cloudflareIcon from "/icon/cloudflare.svg";
+import githubIcon from "/icon/github.svg";
+import herokuIcon from "/icon/heroku.svg";
+import cloudfrontIcon from "/icon/cloudfront.svg";
+import googleCloudIcon from "/icon/google-cloud.svg";
+import shopifyIcon from "/icon/shopify.svg";
+import wordpressIcon from "/icon/wordpress.svg";
+import squarespaceIcon from "/icon/squarespace.svg";
+import wixIcon from "/icon/wix.svg";
 
 export const HOSTING_SIGNATURES: HostingProvider[] = [
   {
