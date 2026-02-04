@@ -205,8 +205,6 @@ function App() {
                     style={{
                       filter:
                         "invert(0.5) brightness(1000%) grayscale(1) contrast(100)",
-                      WebkitMaskImage: "url(" + p.icon + ")",
-                      maskImage: "url(" + p.icon + ")",
                     }}
                   />
                 </div>
