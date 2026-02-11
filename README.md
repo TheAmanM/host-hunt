@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/TheAmanM/host-hunt/refs/heads/main/README-image.png" alt="Vite Logo">
+  <img src="https://raw.githubusercontent.com/TheAmanM/host-hunt/refs/heads/main/banner.png" alt="Vite Logo">
   <h1>Host Hunt</h1>
   <p>A modern and privacy-first hosting provider detection tool.</p>
 </div>
